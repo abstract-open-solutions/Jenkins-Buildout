@@ -14,3 +14,5 @@ Make sure you are in a Python-2.7 virtualenv
 - `$ python bootstrap.py`
 - `$ bin/buildout`
 - `$ bin/jenkins start`
+
+Wait a minute and point your browser to: http://localhost:8080/jenkins
