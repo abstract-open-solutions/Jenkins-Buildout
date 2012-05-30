@@ -13,4 +13,4 @@ parts
 var
 .mr.developer.cfg
 etc/*.cfg
-
+tmp/*
