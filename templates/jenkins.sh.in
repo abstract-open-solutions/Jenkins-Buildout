@@ -1,4 +1,5 @@
 #!/bin/sh
 
+export JENKINS_HOME="${buildout:directory}/var/jenkins"
 cd ${jetty-download:location}
 bin/jetty.sh $1
