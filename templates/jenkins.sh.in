@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd ${jetty-download:location}
+bin/jetty.sh $1

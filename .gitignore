@@ -1,0 +1,16 @@
+src/*
+build/
+*.pyc
+*.pyo
+*egg-info
+.installed.cfg
+bin
+develop-eggs
+downloads
+eggs
+fake-eggs
+parts
+var
+.mr.developer.cfg
+etc/*.cfg
+
