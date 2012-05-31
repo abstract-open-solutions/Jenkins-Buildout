@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.warnings.WarningsDescriptor>
+  <helpRedirect/>
+  <groovyParsers>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>PyFlakes</name>
+      <regexp>(.*):(\d+): (.*)</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+
+String fileName = matcher.group(1);
+String lineNumber = matcher.group(2);
+String message = matcher.group(3);
+
+return new Warning(fileName, Integer.parseInt(lineNumber), &quot;Dynamic Parser&quot;, &quot;PyFlakes Warning&quot;, message);</script>
+      <example>hosting/gatherit.policy/bootstrap.py:60: &apos;site&apos; imported but unused</example>
+      <linkName>pyflakes</linkName>
+      <trendName>pyflakes-report</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>Pep8</name>
+      <regexp>(.*):(\d+):(\d+): ([^\s]+) (.*)</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+
+String fileName = matcher.group(1);
+String lineNumber = matcher.group(2);
+String category = matcher.group(4);
+String message = matcher.group(5);
+
+return new Warning(fileName, Integer.parseInt(lineNumber), &quot;Dynamic Parser&quot;, category, message);</script>
+      <example>hosting/assessmentmanagement.basepolicy/assessmentmanagement/basepolicy/__init__.py:1:2: W292 no newline at end of file</example>
+      <linkName>pep8</linkName>
+      <trendName>pep8-report</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>ZPTLint</name>
+      <regexp>\*\*\* Error in: (.*)\n\s*([^:]*): (.*)\n\s*, at line ([0-9]*).*\n.*\n</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+
+    String fileName = matcher.group(1);
+    String lineNumber = matcher.group(4);
+    String category = matcher.group(2);
+    String message = matcher.group(3);
+
+    return new Warning(fileName, Integer.parseInt(lineNumber), &quot;Dynamic Parser&quot;, category, message);</script>
+      <example>*** Error in: hosting/plonetheme.gatherit/plonetheme/gatherit/templates/plone.app.layout.viewlets.logo.pt
+         zope.tal.htmltalparser.NestingError: Open tags &lt;html&gt;, &lt;div&gt;, &lt;htwo&gt; do not match close tag &lt;/h2&gt;
+         , at line 22, column 9
+
+
+
+</example>
+      <linkName>zptlint</linkName>
+      <trendName>zptlint-report</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>XMLLint</name>
+      <regexp>([^:]*):([0-9]*): (.*) : (.*)\n(.*)\n.*\n</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+
+String fileName = matcher.group(1);
+String lineNumber = matcher.group(2);
+String category = matcher.group(3);
+String message = matcher.group(4) + &quot;:&quot; + matcher.group(5);
+
+return new Warning(fileName, Integer.parseInt(lineNumber), &quot;Dynamic Parser&quot;, category, message);
+      </script>
+      <example>hosting/plonetheme.gatherit/plonetheme/gatherit/templates/plonetheme.sunburst.skins.sunburst_templates.main_template.pt:168: namespace error : Namespace prefix metal on block is not defined
+        &lt;metal:block i18n:domain=&quot;plone&quot; tal:condition=&quot;not:ajax_load&quot;&gt;
+
+</example>
+      <linkName>xmllint</linkName>
+      <trendName>xmllint-report</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+  </groovyParsers>
+</hudson.plugins.warnings.WarningsDescriptor>
